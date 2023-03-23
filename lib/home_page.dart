@@ -11,11 +11,70 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        color: Color(0xff2d2f41),
-        child: ClockView(),
+    return Material(
+      child: Scaffold(
+        body: SafeArea(
+          child: Container(
+            alignment: Alignment.center,
+            color: Color(0xff2d2f41),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Clock",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                Text(
+                  "Clock",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 64,
+                  ),
+                ),
+                Text(
+                  "Clock",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+                ClockView(),
+                Text(
+                  "Timezone",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.language,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "Timezone",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                    Text(
+                      "UTC",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
