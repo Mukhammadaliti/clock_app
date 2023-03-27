@@ -59,34 +59,50 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    "Clock",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: Text(
+                      "Clock",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'avenir',
+                        fontSize: 24,
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 32,
-                  ),
-                  Text(
-                    formattedTime,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 64,
+                  Flexible(
+                    flex: 2,
+                    child: Column(
+                      children: [
+                        Text(
+                          formattedTime,
+                          style: TextStyle(
+                            fontFamily: 'avenir',
+                            color: Colors.white,
+                            fontSize: 64,
+                          ),
+                        ),
+                        Text(
+                          formattedDate,
+                          style: TextStyle(
+                            fontFamily: 'avenir',
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    formattedDate,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                  Flexible(
+                    flex: 4,
+                    fit: FlexFit.tight,
+                    child: ClockView(),
                   ),
-                  ClockView(),
                   Text(
                     "Timezone",
                     style: TextStyle(
+                      fontFamily: 'avenir',
                       color: Colors.white,
                       fontSize: 24,
                     ),
@@ -103,6 +119,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         "UTC " + offsetSign + timezoneString,
                         style: TextStyle(
+                          fontFamily: 'avenir',
                           color: Colors.white,
                           fontSize: 24,
                         ),
@@ -127,7 +144,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             Image.asset(
               image,
-              width: 50,
+              // width: 50,
+              scale: 1.5,
             ),
             SizedBox(
               height: 16,
@@ -135,9 +153,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               title,
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-              ),
+                  color: Colors.white, fontSize: 14, fontFamily: 'avenir'),
             )
           ],
         ),
