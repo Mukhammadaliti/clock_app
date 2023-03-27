@@ -187,8 +187,12 @@ class ClockPainter extends CustomPainter {
       ..strokeWidth = 8;
 
     var hourHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
-          .createShader(Rect.fromCircle(center: center, radius: radius))
+      ..shader = RadialGradient(
+        colors: [
+          Color(0xFFEA74AB),
+          Color(0xFFC279FB),
+        ],
+      ).createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 12;
@@ -220,7 +224,7 @@ class ClockPainter extends CustomPainter {
 
     var outerCircleRadius = radius;
     var innerCircleRadius = radius - 14;
-    for (double i = 0; i < 360; i += 12) {
+    for (double i = 0; i < 360; i += 24) {
       var x1 = centerX + outerCircleRadius * cos(i * pi / 180);
       var y1 = centerX + outerCircleRadius * sin(i * pi / 180);
 

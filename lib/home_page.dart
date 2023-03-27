@@ -10,68 +10,134 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var me = DateTime.now();
-  // var formattedTime = DateFormat('').format(me);
   @override
   Widget build(BuildContext context) {
+    var me = DateTime.now();
+    var formattedTime = DateFormat('HH:mm').format(me);
+    var formattedDate = DateFormat('EEE, d MMM').format(me);
+    var timezoneString = me.timeZoneOffset.toString().split(".").first;
+    var offsetSign = "";
+    if (!timezoneString.startsWith('-')) offsetSign = "+";
+    print(timezoneString);
     return Scaffold(
       backgroundColor: Color(0xff2d2f41),
-      body: Container(
-        padding: EdgeInsets.all(32),
-        // alignment: Alignment.center,
-        // color: Color(0xff2d2f41),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "Clock",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
+      body: Row(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              buildMenuButton(
+                "Clock",
+                "assets/images/clock_icon.png",
               ),
+              buildMenuButton(
+                "Alarm",
+                "assets/images/alarm_icon.png",
+              ),
+              buildMenuButton(
+                "Timer",
+                "assets/images/timer_icon.png",
+              ),
+              buildMenuButton(
+                "Stopwatch",
+                "assets/images/stopwatch_icon.png",
+              ),
+            ],
+          ),
+          VerticalDivider(
+            color: Colors.white54,
+            width: 1,
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 32,
+                vertical: 64,
+              ),
+              // alignment: Alignment.center,
+              // color: Color(0xff2d2f41),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Clock",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                  Text(
+                    formattedTime,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 64,
+                    ),
+                  ),
+                  Text(
+                    formattedDate,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  ClockView(),
+                  Text(
+                    "Timezone",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.language,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "UTC " + offsetSign + timezoneString,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding buildMenuButton(String title, String image) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: InkWell(
+        onTap: () {},
+        child: Column(
+          children: [
+            Image.asset(
+              image,
+              width: 50,
             ),
             SizedBox(
-              height: 32,
+              height: 16,
             ),
             Text(
-              "Clock",
+              title,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 64,
+                fontSize: 14,
               ),
-            ),
-            Text(
-              "Clock",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-            ClockView(),
-            Text(
-              "Timezone",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.language,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  "UTC",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-              ],
             )
           ],
         ),
