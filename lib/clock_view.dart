@@ -5,6 +5,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 class ClockView extends StatefulWidget {
+  final double? size;
+
+  const ClockView({super.key, this.size});
   @override
   _ClockViewState createState() => _ClockViewState();
 }
@@ -12,17 +15,17 @@ class ClockView extends StatefulWidget {
 class _ClockViewState extends State<ClockView> {
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {});
-    });
+    // Timer.periodic(Duration(seconds: 1), (timer) {
+    //   setState(() {});
+    // });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      height: 300,
+      width: widget.size,
+      height: widget.size,
       child: Transform.rotate(
         angle: -pi / 2,
         child: CustomPaint(
@@ -48,7 +51,7 @@ class ClockPainter extends CustomPainter {
     var outlineBrush = Paint()
       ..color = Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 16;
+      ..strokeWidth = size.width / 20;
 
     var centerFillBrush = Paint()..color = Color(0xFFEAECFF);
 
@@ -56,14 +59,14 @@ class ClockPainter extends CustomPainter {
       ..color = Colors.orange.shade300
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 5;
+      ..strokeWidth = size.width / 60;
 
     var minHandBrush = Paint()
       ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 8;
+      ..strokeWidth = size.width / 30;
 
     var hourHandBrush = Paint()
       ..shader = RadialGradient(
@@ -74,7 +77,7 @@ class ClockPainter extends CustomPainter {
       ).createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 12;
+      ..strokeWidth = size.width / 24;
 
     var dashBrush = Paint()
       ..color = Color(0xFFEAECFF)
