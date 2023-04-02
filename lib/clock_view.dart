@@ -59,7 +59,7 @@ class ClockPainter extends CustomPainter {
       ..color = Colors.orange.shade300
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = size.width / 60;
+      ..strokeWidth = size.width / 50;
 
     var minHandBrush = Paint()
       ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
@@ -85,27 +85,31 @@ class ClockPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1;
 
-    canvas.drawCircle(center, radius - 40, fillBrush);
-    canvas.drawCircle(center, radius - 40, outlineBrush);
+    canvas.drawCircle(center, radius * 0.75, fillBrush);
+    canvas.drawCircle(center, radius * 0.75, outlineBrush);
 
     var hourHandX = centerX +
-        120 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        radius *
+            0.4 *
+            cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     var hourHandY = centerX +
-        120 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        radius *
+            0.4 *
+            sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
 
-    var minHandX = centerX + 140 * cos(dateTime.minute * 6 * pi / 180);
-    var minHandY = centerX + 140 * sin(dateTime.minute * 6 * pi / 180);
+    var minHandX = centerX + radius * 0.6 * cos(dateTime.minute * 6 * pi / 180);
+    var minHandY = centerX + radius * 0.6 * sin(dateTime.minute * 6 * pi / 180);
     canvas.drawLine(center, Offset(minHandX, minHandY), minHandBrush);
 
-    var secHandX = centerX + 80 * cos(dateTime.second * 6 * pi / 180);
-    var secHandY = centerX + 80 * sin(dateTime.second * 6 * pi / 180);
+    var secHandX = centerX + radius * 0.6 * cos(dateTime.second * 6 * pi / 180);
+    var secHandY = centerX + radius * 0.6 * sin(dateTime.second * 6 * pi / 180);
     canvas.drawLine(center, Offset(secHandX, secHandY), secHandBrush);
 
-    canvas.drawCircle(center, 16, centerFillBrush);
+    canvas.drawCircle(center, radius * 12, centerFillBrush);
 
     var outerCircleRadius = radius;
-    var innerCircleRadius = radius - 14;
+    var innerCircleRadius = radius * 0.2;
     for (double i = 0; i < 360; i += 12) {
       var x1 = centerX + outerCircleRadius * cos(i * pi / 180);
       var y1 = centerX + outerCircleRadius * sin(i * pi / 180);
