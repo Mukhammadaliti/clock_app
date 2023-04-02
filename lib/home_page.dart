@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                     child: Align(
                         alignment: Alignment.center,
                         child: ClockView(
-                          size: 250,
+                          size: 300,
                         )),
                   ),
                   Flexible(
